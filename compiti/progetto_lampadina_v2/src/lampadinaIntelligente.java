@@ -43,4 +43,9 @@ public class lampadinaIntelligente {
         if (intensita < 0)
             intensita = 0;
     }
+
+    @Override
+    public String toString() {
+        return "Nome: " + this.nome + ", Potenza: " + this.potenza + " Watt, Accesa: " + accesa + ", Intensità: " + this.intensita + ", Colore: " + this.colore;
+    }
 }
