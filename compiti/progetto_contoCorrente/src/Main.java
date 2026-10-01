@@ -14,7 +14,6 @@ public class Main {
                 case 1:
                     System.out.print("Inserisci il nome del correntista: ");
                     String nome = s.nextLine();
-
                     System.out.print("Inserisci il cognome del correntista: ");
                     String cognome = s.nextLine();
                     System.out.print("Inserisci il codice del conto: ");
@@ -24,14 +23,33 @@ public class Main {
                     System.out.println("Conto creato con successo per " + conto.getNominativo());
                     creato = true;
                     break;
-                    case 2:
-
-                    }
-
-                } while (continua == 1);
-
-                s.close();
+                case 2:
+                    System.out.println("Inserire la somma da depositare: ");
+                    double n = s.nextDouble();
+                    conto.deposita(n);
+                    break;
+                case 3:
+                    System.out.println("Inserire la somma da prelevare: ");
+                    double p = s.nextDouble();
+                    conto.preleva(p);
+                    break;
+                case 4:
+                    System.out.println("Il saldo attuale è di: " + conto.getSaldo());
+                    break;
+                case 5:
+                    System.out.println("Codice conto: " + conto.getCodice());
+                    break;
+                case 6:
+                    System.out.println("Nominativo: " + conto.getNominativo());
+                    break;
+                case 7:
+                    System.out.println(conto.toString());
+                    break;
+                default:
+                    System.out.println("Il numero inserito non è valido");
             }
-        }
+            System.out.println("Vuoi continuare a interagire? \n 1. Si, no per qualunque altra cosa");
+            continua = s.nextInt();
+        } while (continua == 1);
     }
 }
