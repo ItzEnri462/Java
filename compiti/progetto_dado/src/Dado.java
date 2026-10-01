@@ -9,7 +9,12 @@ public class Dado {
     public Dado(Dado d) {
         this.nFacce = d.nFacce;
     }
-    public int lancia(Dado d) {
-        return (int)(Math.random() * d.nFacce + 1);
+    public int lancia() {
+        return (int)(Math.random() * this.nFacce + 1);
+    }
+
+    @Override
+    public String toString() {
+        return "Il dado ha " + this.nFacce + " facce";
     }
 }
