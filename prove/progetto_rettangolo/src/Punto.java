@@ -1,18 +1,20 @@
 public class Punto {
     private double x;
     private double y;
-    private String nome;
+
+    public Punto() {
+        this.x = 0;
+        this.y = 0;
+    }
 
     public Punto(double x, double y, String nome) {
         this.x = x;
         this.y = y;
-        this.nome = nome;
     }
 
     public Punto(Punto A) {
         this.x = A.x;
         this.y = A.y;
-        this.nome = A.nome;
     }
 
     public double getX() {
@@ -21,5 +23,12 @@ public class Punto {
 
     public double getY() {
         return this.y;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+    public void setY(double y) {
+        this.y = y;
     }
 }

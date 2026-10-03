@@ -4,7 +4,21 @@ public class Rettangolo {
     private double perimetro;
     private double area;
 
+    public Rettangolo(){
+        this.perimetro = 0;
+        this.area = 0;
+        this.a.setX(0);
+        this.a.setY(0);
+        this.b.setX(0);
+        this.b.setY(0);
+    }
+
     public Rettangolo(Punto a, Punto b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    public void setPunti(Punto a, Punto b) {
         this.a = a;
         this.b = b;
     }
