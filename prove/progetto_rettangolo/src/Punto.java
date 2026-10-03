@@ -14,4 +14,12 @@ public class Punto {
         this.y = A.y;
         this.nome = A.nome;
     }
+
+    public double getX() {
+        return this.x;
+    }
+
+    public double getY() {
+        return this.y;
+    }
 }
