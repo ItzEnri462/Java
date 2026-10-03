@@ -7,10 +7,8 @@ public class Rettangolo {
     public Rettangolo(){
         this.perimetro = 0;
         this.area = 0;
-        this.a.setX(0);
-        this.a.setY(0);
-        this.b.setX(0);
-        this.b.setY(0);
+        this.a = new Punto(0, 0);
+        this.b = new Punto(0, 0);
     }
 
     public Rettangolo(Punto a, Punto b) {

@@ -7,7 +7,7 @@ public class Punto {
         this.y = 0;
     }
 
-    public Punto(double x, double y, String nome) {
+    public Punto(double x, double y) {
         this.x = x;
         this.y = y;
     }
