@@ -25,7 +25,14 @@ public class Punto {
         Punto m = new Punto();
         m.x = (this.x + p.x) / 2;
         m.y = (this.y + p.y) / 2;
-
         return m;
+    }
+
+    public void ruota(double a) {
+        Punto k = new Punto();
+        k.x = this.x * Math.cos(a) - this.y * Math.sin(a);
+        k.y = this.x * Math.sin(a) + this.y * Math.cos(a);
+        this.x = k.x;
+        this.y = k.y;
     }
 }
