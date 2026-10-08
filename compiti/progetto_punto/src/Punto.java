@@ -35,4 +35,9 @@ public class Punto {
         this.x = k.x;
         this.y = k.y;
     }
+
+    @Override
+    public String toString() {
+        return "(" + this.x + "," + this.y + ")";
+    }
 }
