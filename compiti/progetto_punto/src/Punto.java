@@ -23,6 +23,8 @@ public class Punto {
 
     public Punto puntoMedio(Punto p) {
         Punto m = new Punto();
+        m.x = (this.x + p.x) / 2;
+        m.y = (this.y + p.y) / 2;
 
         return m;
     }
