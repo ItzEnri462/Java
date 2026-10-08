@@ -87,4 +87,38 @@ public class Incrocio {
                 return "";
         }
     }
+
+    @Override
+    public String toString() {
+        String n = " ";
+        String s = " ";
+        String o = " ";
+        String e = " ";
+
+        if (nord.isAcceso()) {
+            n = nord.getColore().substring(0, 1);
+        }
+
+        if (sud.isAcceso()) {
+            s = sud.getColore().substring(0, 1);
+        }
+
+        if (ovest.isAcceso()) {
+            o = ovest.getColore().substring(0, 1);
+        }
+
+        if (est.isAcceso()) {
+            e = est.getColore().substring(0, 1);
+        }
+        return
+                "          | N |\n" +
+                "          |   |\n" +
+                "          | " + n + " |\n" +
+                "--------------------------\n" +
+                "  O " + o + "                 " + e + " E\n" +
+                "--------------------------\n" +
+                "          | " + s + " |\n" +
+                "          |   |\n" +
+                "          | S |";
+    }
 }
