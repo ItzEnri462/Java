@@ -59,6 +59,7 @@ public class Main {
             }
 
             System.out.println("Digitare 1 per interrompere, qualsiasi altro valore per continuare");
+            continua = s.nextInt();
         } while (continua != 1);
 
     }
