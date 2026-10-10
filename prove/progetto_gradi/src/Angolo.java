@@ -18,4 +18,24 @@ public class Angolo {
     public void setSecondi(int n) {
         this.secondi = n;
     }
+
+    public Angolo sommaAngoli(Angolo b) {
+        Angolo c = new Angolo();
+        int gradi = this.gradi + b.gradi;
+        int minuti = this.minuti + b.minuti;
+        int secondi = this.secondi + b.secondi;
+
+        minuti = minuti + secondi / 60;
+        secondi = secondi % 60;
+
+        gradi = gradi + minuti / 60;
+        minuti = minuti % 60;
+
+        gradi = gradi %360;
+
+        c.gradi = gradi;
+        c.minuti = minuti;
+        c.secondi = secondi;
+        return c;
+    }
 }
