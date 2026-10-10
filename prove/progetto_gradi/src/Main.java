@@ -47,10 +47,19 @@ public class Main {
                         System.out.println("Non hai ancora creato entrambi gli angoli");
                     break;
                 case 3:
-
+                    if (a != null && b!= null) {
+                        Angolo diff = a.differenzaAngolo(b);
+                        System.out.println("La differenza tra i due angoli (Maggiore - minore) è stata completata.");
+                        System.out.println("Risultato: " + diff.getGradi() + "°, " + diff.getMinuti() + "', " + diff.getSecondi() + "''");
+                    }
+                    break;
+                default:
+                    System.out.println("Scelta non valida.");
+                    break;
             }
 
-        } while (continua == 1);
+            System.out.println("Digitare 1 per interrompere, qualsiasi altro valore per continuare");
+        } while (continua != 1);
 
     }
 }
