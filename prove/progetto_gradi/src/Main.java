@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
 
     public static Angolo creaAngolo() {
-        Angolo a = null;
+        Angolo a = new Angolo();
         System.out.println("Inserisci i gradi:");
         Scanner s = new Scanner(System.in);
         int n = s.nextInt();
@@ -37,6 +37,16 @@ public class Main {
                     else
                         System.out.println("Scelta non valida.");
                     break;
+                case 2:
+                    if (a != null && b != null) {
+                        Angolo c = a.sommaAngoli(b);
+                        System.out.println("I due angoli sono stati sommati.");
+                        System.out.println("Risultato: " + c.getGradi() + "°, " + c.getMinuti() + "', " + c.getSecondi() + "''");
+                    }
+                    else
+                        System.out.println("Non hai ancora creato entrambi gli angoli");
+                    break;
+                case 3:
 
             }
 
