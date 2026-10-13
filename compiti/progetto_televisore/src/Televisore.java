@@ -35,4 +35,29 @@ public class Televisore {
             canale++;
         return true;
     }
+
+    public boolean canalePrecedente() {
+        if (!this.isAcceso)
+            return false;
+        if (canale == 1)
+            canale = canaliTotali;
+        else
+            canale--;
+        return true;
+    }
+
+    public boolean selezionaCanale(int canale) {
+        if (canale < 1 || canale > canaliTotali)
+            return false;
+        this.canale = canale;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        if (!isAcceso)
+            return "Il televisore è spento.";
+        return "Il televisore è acceso, sul canale " + this.canale + " e il volume a " + this.volume;
+    }
 }
