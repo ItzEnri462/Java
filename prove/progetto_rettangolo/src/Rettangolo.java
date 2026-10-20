@@ -45,4 +45,15 @@ public class Rettangolo {
         this.area = getAltezza()*getBase();
         return this.area;
     }
+
+    public void effettuaTrasla(double dx, double dy) {
+        double x = this.a.getX();
+        this.a.setX(x + dx);
+        double y = this.a.getY();
+        this.a.setY(y + dy);
+        x = this.b.getX();
+        this.b.setX(x + dx);
+        y = this.b.getY();
+        this.b.setY(y + dy);
+    }
 }
