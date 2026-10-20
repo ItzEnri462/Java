@@ -56,4 +56,17 @@ public class Rettangolo {
         y = this.b.getY();
         this.b.setY(y + dy);
     }
+
+    public boolean contenuto(Rettangolo r) {
+        double xA_min = Math.min(this.a.getX(), this.b.getX());
+        double xA_max = Math.max(this.a.getX(), this.b.getX());
+        double xB_min = Math.min(this.b.getX(), this.b.getX());
+        double xB_max = Math.max(this.b.getX(), this.b.getX());
+
+        double yA_min = Math.min(r.a.getY(), r.b.getY());
+        double yA_max = Math.max(r.a.getY(), r.b.getY());
+        double yB_min = Math.min(r.b.getY(), r.b.getY());
+        double yB_max = Math.max(r.b.getY(), r.b.getY());
+
+    }
 }
