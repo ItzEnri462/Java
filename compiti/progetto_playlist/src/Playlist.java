@@ -1,8 +1,10 @@
+import java.time.Duration;
+
 public class Playlist {
     private String nome;
-    private static final int MAX = 0;
-    private int braniAttuali;
-    private int branoCorrente;
+    private static final int MAX = 100;
+    private int quantiBrani;
+    private int numeroCanzone;
     private String stato;
     private Canzone[] canzoni;
 
@@ -12,18 +14,25 @@ public class Playlist {
             braniAttuali = MAX;
         this.canzoni = new Canzone[MAX];
 
-        System.arraycopy(canzoni, 0, this.canzoni, 0, braniAttuali);
+        for (int i = 0; i < canzoni.length && this.quantiBrani < MAX; i++) {
+            if (canzoni[i] != null) {
+                this.canzoni[this.quantiBrani] = canzoni[i];
+                this.quantiBrani++;
+            }
+        }
 
         this.nome = nome;
-        branoCorrente = 0;
+        numeroCanzone = 0;
         stato = "STOP";
     }
 
     public Playlist(Playlist p) {
         this.nome = p.nome;
-        this.braniAttuali = p.braniAttuali;
-        this.branoCorrente = p.branoCorrente;
+        this.quantiBrani = p.quantiBrani;
+        this.numeroCanzone = p.numeroCanzone;
         this.stato = p.stato;
+        this.canzoni = new Canzone[MAX];
+        System.arraycopy(p.canzoni, 0, this.canzoni, 0, p.quantiBrani);
     }
 
     public Canzone getCanzone(int n) {
@@ -38,7 +47,7 @@ public class Playlist {
     }
 
     public int getQuantiBrani() {
-        return braniAttuali;
+        return quantiBrani;
     }
 
     public void play() {
@@ -53,37 +62,51 @@ public class Playlist {
 
     public void stop() {
         if (stato.equals("STOP")) {
-            branoCorrente = 1;
+            numeroCanzone = 1;
         }
         stato = "STOP";
     }
 
     public void branoSuccessivo() {
-        if (branoCorrente == braniAttuali) {
-            branoCorrente = 1;
+        if (numeroCanzone == quantiBrani) {
+            numeroCanzone = 1;
         } else {
-            branoCorrente++;
+            numeroCanzone++;
         }
     }
 
     public void branoPrecedente() {
-        if (branoCorrente == 1) {
-            branoCorrente = braniAttuali;
+        if (numeroCanzone == 1) {
+            numeroCanzone = quantiBrani;
         } else {
-            branoCorrente--;
+            numeroCanzone--;
         }
     }
 
     public boolean add(Canzone c) {
-        if (braniAttuali >= MAX) {
+        if (quantiBrani >= MAX) {
             return false;
         }
-        canzoni[braniAttuali + 1] = c;
+        canzoni[quantiBrani + 1] = c;
+        quantiBrani++;
         return true;
     }
 
+    public Duration durataTotale() {
+        Duration somma = Duration.ZERO;
+        for (int i = 0; i < quantiBrani; i++) {
+            somma = somma.plus(canzoni[i].getDurata());
+        }
+        return somma;
+    }
+
+    @Override
     public String toString() {
-        return "Playlist " + nome + ", " + braniAttuali + " brani, in "
-                + stato + " sul brano " + branoCorrente;
+        String descrizione = "Playlist " + nome + ", " + quantiBrani + " brani, in " + stato;
+        Canzone corrente = getCanzone(numeroCanzone);
+        if (corrente != null) {
+            descrizione += " sul brano " + corrente.getTitolo() + " di " + corrente.getArtista();
+        }
+        return descrizione;
     }
 }
