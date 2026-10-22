@@ -25,6 +25,13 @@ public class Playlist {
         this.stato = p.stato;
     }
 
+    public Canzone getCanzone(int n) {
+        n--;
+        if (n < 0 || n > 99)
+            n = 0;
+        return this.canzoni[n];
+    }
+
     public String getNome() {
         return nome;
     }
