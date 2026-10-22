@@ -87,7 +87,7 @@ public class Playlist {
         if (quantiBrani >= MAX) {
             return false;
         }
-        canzoni[quantiBrani + 1] = c;
+        canzoni[quantiBrani] = c;
         quantiBrani++;
         return true;
     }
