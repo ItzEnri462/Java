@@ -3,12 +3,19 @@ public class Playlist {
     private int n_brani;
     private int branoCorrente;
     private String stato;
+    private Canzone[] canzoni;
 
-    public Playlist(String nome, int n_brani) {
+    public Playlist(String nome, Canzone[] canzoni) {
+        int n_brani = canzoni.length;
+        if (n_brani > 100)
+            n_brani = 100;
+        this.canzoni = new Canzone[n_brani];
+        for (int i = 0; i < n_brani; i++) {
+            this.canzoni[i] = canzoni[i];
+        }
         this.nome = nome;
-        this.n_brani = n_brani;
-        this.branoCorrente = 1;
-        this.stato = "STOP";
+        branoCorrente = 0;
+        stato = "STOP";
     }
 
     public Playlist(Playlist p) {
