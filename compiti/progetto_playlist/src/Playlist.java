@@ -1,18 +1,19 @@
 public class Playlist {
     private String nome;
-    private int n_brani;
+    private static final int MAX = 0;
+    private int braniAttuali;
     private int branoCorrente;
     private String stato;
     private Canzone[] canzoni;
 
     public Playlist(String nome, Canzone[] canzoni) {
-        int n_brani = canzoni.length;
-        if (n_brani > 100)
-            n_brani = 100;
-        this.canzoni = new Canzone[n_brani];
-        for (int i = 0; i < n_brani; i++) {
-            this.canzoni[i] = canzoni[i];
-        }
+        int braniAttuali = canzoni.length;
+        if (braniAttuali > MAX)
+            braniAttuali = MAX;
+        this.canzoni = new Canzone[MAX];
+
+        System.arraycopy(canzoni, 0, this.canzoni, 0, braniAttuali);
+
         this.nome = nome;
         branoCorrente = 0;
         stato = "STOP";
@@ -20,7 +21,7 @@ public class Playlist {
 
     public Playlist(Playlist p) {
         this.nome = p.nome;
-        this.n_brani = p.n_brani;
+        this.braniAttuali = p.braniAttuali;
         this.branoCorrente = p.branoCorrente;
         this.stato = p.stato;
     }
@@ -37,7 +38,7 @@ public class Playlist {
     }
 
     public int getQuantiBrani() {
-        return n_brani;
+        return braniAttuali;
     }
 
     public void play() {
@@ -58,7 +59,7 @@ public class Playlist {
     }
 
     public void branoSuccessivo() {
-        if (branoCorrente == n_brani) {
+        if (branoCorrente == braniAttuali) {
             branoCorrente = 1;
         } else {
             branoCorrente++;
@@ -67,14 +68,22 @@ public class Playlist {
 
     public void branoPrecedente() {
         if (branoCorrente == 1) {
-            branoCorrente = n_brani;
+            branoCorrente = braniAttuali;
         } else {
             branoCorrente--;
         }
     }
 
+    public boolean add(Canzone c) {
+        if (braniAttuali >= MAX) {
+            return false;
+        }
+        canzoni[braniAttuali + 1] = c;
+        return true;
+    }
+
     public String toString() {
-        return "Playlist " + nome + ", " + n_brani + " brani, in "
+        return "Playlist " + nome + ", " + braniAttuali + " brani, in "
                 + stato + " sul brano " + branoCorrente;
     }
 }
