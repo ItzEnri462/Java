@@ -22,4 +22,11 @@ public class Canzone {
     public Duration getDurata() {
         return durata;
     }
+
+    @Override
+    public String toString() {
+        long minuti = durata.toMinutes();
+        long secondi = durata.toSeconds();
+        return "Titolo: " + titolo + "\nDurata: " + minuti + " minuti e " + secondi + " secondi" + "\nArtista: " + artista;
+    }
 }
