@@ -28,7 +28,7 @@ public class Playlist {
     public Canzone getCanzone(int n) {
         n--;
         if (n < 0 || n > 99)
-            n = 0;
+            return null;
         return this.canzoni[n];
     }
 
