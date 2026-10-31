@@ -3,6 +3,8 @@ public class Risposta {
     private Boolean isCorrect;
 
     public Risposta(String r, Boolean isCorrect) {
+        this.r = r;
+        this.isCorrect = isCorrect;
     }
 
     public Risposta(Risposta risposta) {
