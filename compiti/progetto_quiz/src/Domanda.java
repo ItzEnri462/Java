@@ -27,12 +27,57 @@ public class Domanda {
     }
 
     public boolean rispondi(int scelta) {
+        if (scelta == -1)
+            return false;
         this.scelta = scelta;
-        if (risposte[scelta].getCorrect()) {
-            isEsatta = true;
-            return true;
+        if (!risposte[scelta].getCorrect()) {
+            isEsatta = false;
+            return false;
         }
-        isEsatta = false;
-        return false;
+        isEsatta = true;
+        return true;
+    }
+
+    public int getValore() {
+        return valore;
+    }
+
+    public void setValore(int valore) {
+        if (valore > 0)
+            this.valore = valore;
+    }
+
+    public int getPunteggio() {
+        if (rispondi(scelta)) {
+            return valore;
+        }
+        if (!rispondi(scelta) && scelta != -1) {
+            return 0;
+        }
+        return -1;
+    }
+
+    public boolean completata() {
+        return this.scelta != -1;
+    }
+
+    public String getRispostaCorretta() {
+        for (int i = 0; i < MAXRISPOSTE; i++) {
+            if (risposte[i].getCorrect()) {
+                return risposte[i].getR();
+            }
+        }
+        return "La domanda non ha risposte giuste";
+    }
+
+    public String getRispostaData() {
+        if (scelta == -1)
+            return null;
+        return risposte[scelta].getR();
+    }
+
+    @Override
+    public String toString() {
+        return testo + "\n1. " + risposte[0].getR() + "\n2. " + risposte[1].getR() + "\n3. " + risposte[2].getR() + "\n4. " + risposte[3].getR();
     }
 }
