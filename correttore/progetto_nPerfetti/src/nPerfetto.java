@@ -9,7 +9,7 @@ public class nPerfetto {
         if (n <= 0)
             return false;
         int somma = 1;
-        for (int i = 2; i < Math.sqrt(n); i++) {
+        for (int i = 2; i <= Math.sqrt(n); i++) {
             if (n % i == 0) {
                 somma += i;
                 int complementare = n / i;
