@@ -48,11 +48,11 @@ public class Domanda {
     }
 
     public int getPunteggio() {
-        if (rispondi(scelta)) {
-            return valore;
+        if (scelta == -1) {
+            return -1;
         }
-        if (!rispondi(scelta) && scelta != -1) {
-            return 0;
+        if (risposte[scelta] != null && risposte[scelta].getCorrect()) {
+            return valore;
         }
         return -1;
     }
