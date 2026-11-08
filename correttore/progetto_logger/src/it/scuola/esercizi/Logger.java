@@ -118,12 +118,11 @@ public class Logger {
         }
         LocalDateTime inizio = LocalDateTime.ofInstant(this.get(0).getData(), ZoneId.of("UTC"));
         LocalDate dataInizio = inizio.toLocalDate();
+        LocalTime oraInizio = inizio.toLocalTime();
 
         LocalDateTime fine = LocalDateTime.ofInstant(this.get(azioniAttuali - 1).getData(), ZoneId.of("UTC"));
-
         LocalDate dataFine = fine.toLocalDate();
         LocalTime oraFine = fine.toLocalTime();
-        return s + "\nLe azioni sono state memorizzate a partire\ndalle " +
-        inizio.getHour() + ":" + inizio.getMinute() + ":" + inizio.getSecond() + " del " + dataInizio + " UTC \nfino alle ore " + oraFine + " del " + dataFine + " UTC";
+        return s + "\nLe azioni sono state memorizzate a partire\ndalle ore " + oraInizio + " del " + dataInizio + " UTC\nfino alle ore " + oraFine + " del " + dataFine + " UTC";
     }
 }
