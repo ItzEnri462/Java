@@ -1,18 +1,16 @@
 package it.scuola.esercizi;
 
-import java.awt.event.WindowStateListener;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Date;
 
 class Azione {
     private String descrizione;
     private Instant i;
     private int attenzione;
 
-    public Azione(int attenzione, String descrizione) {
+    public Azione(String descrizione, int attenzione) {
         if (attenzione < 1)
             attenzione = 1;
         else if (attenzione > 5)
@@ -32,15 +30,15 @@ class Azione {
         return descrizione;
     }
 
-    public Instant getI() {
+    public Instant getData() {
         return i;
     }
 
-    public int getNumAttenzione() {
+    public int getAttenzione() {
         return attenzione;
     }
 
-    public String getAttenzione() {
+    public String getLivelloAttenzione() {
         if (attenzione == 1)
             return "nessun problema";
         if (attenzione == 2)
@@ -54,7 +52,7 @@ class Azione {
 
     @Override
     public String toString() {
-        return "Descrizione: " + descrizione + "\n" + i + "\n" + this.getAttenzione();
+        return "Descrizione: " + descrizione + "\n" + i + "\n" + this.getLivelloAttenzione();
     }
 }
 
@@ -77,7 +75,7 @@ public class Logger {
         return true;
     }
 
-    public Azione getAzione(int i) {
+    public Azione get(int i) {
         if (azioni[i] != null)
             return azioni[i];
         return null;
@@ -86,7 +84,7 @@ public class Logger {
     public Azione[] getByAttenzione(int attenzione) {
         int contatore = 0;
         for (int i = 0; i < azioniAttuali; i++) {
-            if (azioni[i].getNumAttenzione() == attenzione) {
+            if (azioni[i].getAttenzione() == attenzione) {
                 contatore++;
             }
         }
@@ -94,7 +92,7 @@ public class Logger {
 
         int t = 0;
         for (int i = 0; i < azioniAttuali; i++) {
-            if (azioni[i].getNumAttenzione() == attenzione) {
+            if (azioni[i].getAttenzione() == attenzione) {
                 risultato[t] = new Azione(azioni[i]);
                 t++;
             }
@@ -108,9 +106,7 @@ public class Logger {
     }
 
     public boolean isEmpty() {
-        if (azioniAttuali == 0)
-            return true;
-        return false;
+        return azioniAttuali == 0;
     }
 
 
@@ -118,10 +114,10 @@ public class Logger {
     public String toString() {
         if (this.isEmpty())
             return "numero totale di azioni: " + azioniAttuali;
-        LocalDate i = LocalDate.from(this.getAzione(0).getI());
-        LocalDateTime inizio = LocalDateTime.from(this.getAzione(0).getI());
-        LocalDate dataFine = LocalDate.from(this.getAzione(azioniAttuali - 1).getI());
-        LocalTime fine = LocalTime.from(this.getAzione(azioniAttuali - 1).getI());
+        LocalDate i = LocalDate.from(this.get(0).getData());
+        LocalDateTime inizio = LocalDateTime.from(this.get(0).getData());
+        LocalDate dataFine = LocalDate.from(this.get(azioniAttuali - 1).getData());
+        LocalTime fine = LocalTime.from(this.get(azioniAttuali - 1).getData());
         String s ="";
         for (int j = 1; j <= 5; j++) {
             s += "\nLivello " + j + " : " + getByAttenzione(j).length;
