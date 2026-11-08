@@ -70,7 +70,7 @@ public class Logger {
     }
 
     public boolean add(Azione a) {
-        if (azioniAttuali >= maxAzioni - 1)
+        if (azioniAttuali >= maxAzioni)
             return false;
         azioni[azioniAttuali] = a;
         azioniAttuali++;
@@ -84,15 +84,23 @@ public class Logger {
     }
 
     public Azione[] getByAttenzione(int attenzione) {
-        Azione[] a = new Azione[azioniAttuali];
+        int contatore = 0;
+        for (int i = 0; i < azioniAttuali; i++) {
+            if (azioni[i].getNumAttenzione() == attenzione) {
+                contatore++;
+            }
+        }
+        Azione[] risultato = new Azione[contatore];
+
         int t = 0;
         for (int i = 0; i < azioniAttuali; i++) {
             if (azioni[i].getNumAttenzione() == attenzione) {
-                a[t] = new Azione(azioni[i]);
+                risultato[t] = new Azione(azioni[i]);
                 t++;
             }
         }
-        return a;
+
+        return risultato;
     }
 
     public int size() {
@@ -100,7 +108,7 @@ public class Logger {
     }
 
     public boolean isEmpty() {
-        if (azioni[0] == null)
+        if (azioniAttuali == 0)
             return true;
         return false;
     }
@@ -108,15 +116,16 @@ public class Logger {
 
     @Override
     public String toString() {
-        LocalDate i = LocalDate.from(this.getAzione(0).getI());
-        LocalDateTime inizio = LocalDateTime.from(this.getAzione(0).getI());
-        LocalDate dataFine = LocalDate.from(this.getAzione(azioni.length - 1).getI());
-        LocalTime fine = LocalTime.from(this.getAzione(azioni.length - 1).getI());
-        for (int j = 1; j <= 5; j++) {
-            String s = "\nLivello " + j + " : " + getByAttenzione(j).length;
-        }
         if (this.isEmpty())
             return "numero totale di azioni: " + azioniAttuali;
+        LocalDate i = LocalDate.from(this.getAzione(0).getI());
+        LocalDateTime inizio = LocalDateTime.from(this.getAzione(0).getI());
+        LocalDate dataFine = LocalDate.from(this.getAzione(azioniAttuali - 1).getI());
+        LocalTime fine = LocalTime.from(this.getAzione(azioniAttuali - 1).getI());
+        String s ="";
+        for (int j = 1; j <= 5; j++) {
+            s += "\nLivello " + j + " : " + getByAttenzione(j).length;
+        }
         return "numero totale di azioni: " + azioniAttuali + s + "\nLe azioni sono state memorizzate a partire dalle " +
         inizio.getHour() + ":" + inizio.getMinute() + ":" + inizio.getSecond() + " del " + i + " UTC \nfino alle ore " + fine + " del " + dataFine + " UTC";
     }
