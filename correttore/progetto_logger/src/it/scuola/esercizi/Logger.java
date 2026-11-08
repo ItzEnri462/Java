@@ -123,6 +123,6 @@ public class Logger {
         LocalDate dataFine = fine.toLocalDate();
         LocalTime oraFine = fine.toLocalTime();
         return s + "\nLe azioni sono state memorizzate a partire dalle " +
-        inizio.getHour() + ":" + inizio.getMinute() + ":" + inizio.getSecond() + " del " + dataInizio + " UTC \nfino alle ore " + fine + " del " + dataFine + " UTC";
+        inizio.getHour() + ":" + inizio.getMinute() + ":" + inizio.getSecond() + " del " + dataInizio + " UTC \nfino alle ore " + oraFine + " del " + dataFine + " UTC";
     }
 }
