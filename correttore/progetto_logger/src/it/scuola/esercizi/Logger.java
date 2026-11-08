@@ -80,6 +80,9 @@ public class Logger {
     }
 
     public Azione[] getByAttenzione(int attenzione) {
+        if (attenzione < 1 || attenzione > 5) {
+            return new Azione[0];
+        }
         int contatore = 0;
         for (int i = 0; i < azioniAttuali; i++) {
             if (azioni[i].getAttenzione() == attenzione) {
@@ -124,11 +127,12 @@ public class Logger {
         }
         LocalDateTime inizio = LocalDateTime.ofInstant(this.get(0).getData(), ZoneId.of("UTC"));
         LocalDate dataInizio = inizio.toLocalDate();
-        LocalTime oraInizio = inizio.toLocalTime();
+        String oraInizioStr = String.format("%02d:%02d:%02d", inizio.getHour(), inizio.getMinute(), inizio.getSecond());
 
         LocalDateTime fine = LocalDateTime.ofInstant(this.get(azioniAttuali - 1).getData(), ZoneId.of("UTC"));
         LocalDate dataFine = fine.toLocalDate();
-        LocalTime oraFine = fine.toLocalTime();
-        return s + "\nLe azioni sono state memorizzate a partire\ndalle ore " + oraInizio + " del " + dataInizio + " UTC\nfino alle ore " + oraFine + " del " + dataFine + " UTC";
+        String oraFineStr = String.format("%02d:%02d:%02d", fine.getHour(), fine.getMinute(), fine.getSecond());
+
+        return s + "\nLe azioni sono state memorizzate a partire\ndalle ore " + oraInizioStr + " del " + dataInizio + " UTC\nfino alle ore " + oraFineStr + " del " + dataFine + " UTC";
     }
 }
