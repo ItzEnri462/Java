@@ -114,7 +114,13 @@ public class Logger {
         if (this.isEmpty())
             return s;
         for (int j = 1; j <= 5; j++) {
-            s += "\nLivello " + j + " : " + getByAttenzione(j).length + " azioni";
+            int lunghezza = getByAttenzione(j).length;
+            String StrAzione = "";
+            if (lunghezza == 1)
+                StrAzione = " azione";
+            else
+                StrAzione = " azioni";
+            s += "\nLivello " + j + " : " + getByAttenzione(j).length + StrAzione;
         }
         LocalDateTime inizio = LocalDateTime.ofInstant(this.get(0).getData(), ZoneId.of("UTC"));
         LocalDate dataInizio = inizio.toLocalDate();
