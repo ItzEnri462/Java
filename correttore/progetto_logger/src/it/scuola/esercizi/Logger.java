@@ -1,9 +1,6 @@
 package it.scuola.esercizi;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 
 class Azione {
     private String descrizione;
@@ -76,9 +73,10 @@ public class Logger {
     }
 
     public Azione get(int i) {
-        if (azioni[i] != null)
-            return azioni[i];
-        return null;
+        if (i < 0 || i >= azioniAttuali) {
+            return null;
+        }
+        return azioni[i];
     }
 
     public Azione[] getByAttenzione(int attenzione) {
@@ -112,17 +110,19 @@ public class Logger {
 
     @Override
     public String toString() {
+        String s = "Numero totale di azioni: " + azioniAttuali;
         if (this.isEmpty())
-            return "numero totale di azioni: " + azioniAttuali;
-        LocalDate i = LocalDate.from(this.get(0).getData());
-        LocalDateTime inizio = LocalDateTime.from(this.get(0).getData());
-        LocalDate dataFine = LocalDate.from(this.get(azioniAttuali - 1).getData());
-        LocalTime fine = LocalTime.from(this.get(azioniAttuali - 1).getData());
-        String s ="";
+            return s;
         for (int j = 1; j <= 5; j++) {
-            s += "\nLivello " + j + " : " + getByAttenzione(j).length;
+            s += "\nLivello " + j + " : " + getByAttenzione(j).length + " azioni";
         }
-        return "numero totale di azioni: " + azioniAttuali + s + "\nLe azioni sono state memorizzate a partire dalle " +
-        inizio.getHour() + ":" + inizio.getMinute() + ":" + inizio.getSecond() + " del " + i + " UTC \nfino alle ore " + fine + " del " + dataFine + " UTC";
+        LocalDateTime inizio = LocalDateTime.ofInstant(this.get(0).getData(), ZoneId.of("UTC"));
+        LocalDate dataInizio = inizio.toLocalDate();
+
+        LocalDateTime fine = LocalDateTime.ofInstant(this.get(azioniAttuali - 1).getData(), ZoneId.of("UTC"));
+        LocalDate dataFine = fine.toLocalDate();
+        LocalTime oraFine = fine.toLocalTime();
+        return s + "\nLe azioni sono state memorizzate a partire dalle " +
+        inizio.getHour() + ":" + inizio.getMinute() + ":" + inizio.getSecond() + " del " + dataInizio + " UTC \nfino alle ore " + fine + " del " + dataFine + " UTC";
     }
 }
