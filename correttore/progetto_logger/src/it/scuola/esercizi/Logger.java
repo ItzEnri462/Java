@@ -120,9 +120,10 @@ public class Logger {
         LocalDate dataInizio = inizio.toLocalDate();
 
         LocalDateTime fine = LocalDateTime.ofInstant(this.get(azioniAttuali - 1).getData(), ZoneId.of("UTC"));
+
         LocalDate dataFine = fine.toLocalDate();
         LocalTime oraFine = fine.toLocalTime();
-        return s + "\nLe azioni sono state memorizzate a partire dalle " +
+        return s + "\nLe azioni sono state memorizzate a partire\ndalle " +
         inizio.getHour() + ":" + inizio.getMinute() + ":" + inizio.getSecond() + " del " + dataInizio + " UTC \nfino alle ore " + oraFine + " del " + dataFine + " UTC";
     }
 }
