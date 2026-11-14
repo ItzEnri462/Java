@@ -1,19 +1,37 @@
+import graphics.Color;
+import graphics.Ellipse;
+
 public class Lampadina {
     private int potenza;
-    private String colore;
+    private Color colore;
     private int intensita;
     private boolean accesa;
     private String nome;
+    Ellipse lampada;
 
     public Lampadina(int potenza){
         this.potenza = potenza;
         if (this.potenza < 1 || this.potenza > 100) {
             this.potenza = 10;
         }
-        this.colore = "bianco";
+        this.colore = new Color(255, 239, 148);
         this.intensita = 100;
         this.accesa = false;
         this.nome = "";
+    }
+
+    public Lampadina(int potenza, int x, int y){
+        this.potenza = potenza;
+        if (this.potenza < 1 || this.potenza > 100) {
+            this.potenza = 10;
+        }
+        this.colore = new Color(255, 239, 148);
+        this.intensita = 100;
+        this.accesa = false;
+        this.nome = "";
+        lampada = new Ellipse(x,y, potenza * 2, potenza * 2);
+        lampada.setColor(this.colore);
+        lampada.fill();
     }
 
     public Lampadina(Lampadina l) {
@@ -26,7 +44,6 @@ public class Lampadina {
 
     public void accendi(){
         this.accesa = true;
-
     }
 
     public void aumentaLuminosita(){
