@@ -42,6 +42,10 @@ public class Lampadina {
         this.nome = l.nome;
     }
 
+    public String getNome() {
+        return this.nome;
+    }
+
     public void accendi(){
         this.accesa = true;
     }
