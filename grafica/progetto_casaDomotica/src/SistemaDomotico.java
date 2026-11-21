@@ -1,12 +1,17 @@
+import graphics.Color;
+import graphics.Ellipse;
+
 public class SistemaDomotico {
     private final int max;
     private int lampadineAttuali;
     private Lampadina[] lampadine;
+    private Ellipse[] disegni;
 
     public SistemaDomotico() {
         max = 100;
         lampadine = new Lampadina[max];
         lampadineAttuali = 0;
+        disegni = new Ellipse[max];
     }
 
     public SistemaDomotico(int n) {
@@ -15,6 +20,7 @@ public class SistemaDomotico {
         max = n;
         lampadine = new Lampadina[max];
         lampadineAttuali = 0;
+        disegni = new Ellipse[max];
     }
 
     public boolean add(Lampadina l) {
@@ -62,6 +68,43 @@ public class SistemaDomotico {
             potenzaTot += lampadine[i].getPotenza() * (lampadine[i].getIntensita() / 100.0);
         }
         return potenzaTot;
+    }
+
+    public void disegnaLampadina() {
+        int raggio = lampadine[lampadineAttuali].getPotenza() * 2;
+        disegni[lampadineAttuali] = new Ellipse(lampadine[lampadineAttuali].getX(), lampadine[lampadineAttuali].getY(), raggio, raggio);
+        Color colore = new Color(254, 255, 153);
+        disegni[lampadineAttuali].setColor(colore);
+        disegni[lampadineAttuali].fill();
+    }
+
+    public void disegnaLampadina(String nome) {
+        nome = nome.toLowerCase();
+        for (int i = 0; i < lampadineAttuali; i++) {
+            if (lampadine[i].getNome().toLowerCase().equals(nome)) {
+                int raggio = lampadine[i].getPotenza() * 2;
+                disegni[i] = new Ellipse(lampadine[i].getX(), lampadine[i].getY(), raggio, raggio);
+                Color colore = new Color(254, 255, 153);
+                disegni[i].setColor(colore);
+                disegni[i].fill();
+            }
+        }
+
+    }
+
+    public void nascondiLampadina(String nome) {
+        nome = nome.toLowerCase();
+        for (int i = 0; i < lampadineAttuali; i++) {
+            if (lampadine[i].getNome().toLowerCase().equals(nome)) {
+                int raggio = lampadine[i].getPotenza() * 2;
+                disegni[i].grow(-raggio, -raggio);
+            }
+        }
+    }
+
+    public void togliLampadina(String nome) {
+        this.rimuovi(nome);
+        this.nascondiLampadina(nome);
     }
 
     @Override

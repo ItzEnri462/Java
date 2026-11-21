@@ -7,7 +7,8 @@ public class Lampadina {
     private int intensita;
     private boolean accesa;
     private String nome;
-    Ellipse lampada;
+    private int x;
+    private int y;
 
     public Lampadina(int potenza){
         this.potenza = potenza;
@@ -29,9 +30,18 @@ public class Lampadina {
         this.intensita = 100;
         this.accesa = false;
         this.nome = "";
-        lampada = new Ellipse(x,y, potenza * 2, potenza * 2);
-        lampada.setColor(this.colore);
-        lampada.fill();
+        this.x = x;
+        this.y = y;
+    }
+
+    public Lampadina(String nome, int x, int y){
+        this.potenza = 35;
+        this.colore = new Color(255, 239, 148);
+        this.intensita = 100;
+        this.accesa = false;
+        this.nome = nome;
+        this.x = x;
+        this.y = y;
     }
 
     public Lampadina(Lampadina l) {
@@ -64,6 +74,14 @@ public class Lampadina {
         if (this.intensita > 100){
             this.intensita = 100;
         }
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     @Override
