@@ -46,6 +46,15 @@ public class Lampadina {
         return this.nome;
     }
 
+    public int getPotenza() {
+        return this.potenza;
+    }
+
+    public int getIntensita() {
+        return this.intensita;
+    }
+
+
     public void accendi(){
         this.accesa = true;
     }
