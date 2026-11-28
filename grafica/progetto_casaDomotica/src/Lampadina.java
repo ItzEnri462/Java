@@ -55,6 +55,8 @@ public class Lampadina {
         this.accesa = l.accesa;
         this.nome = l.nome;
         this.raggio = l.raggio;
+        this.x = l.x;
+        this.y = l.y;
     }
 
     public String getNome() {

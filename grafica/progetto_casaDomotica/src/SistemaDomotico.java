@@ -32,6 +32,7 @@ public class SistemaDomotico {
             }
         }
         lampadine[lampadineAttuali] = l;
+        lampadineAttuali++;
         return true;
     }
 
@@ -127,7 +128,8 @@ public class SistemaDomotico {
     public void accendiLampadina(String nome) {
         for (int i = 0; i < lampadineAttuali; i++) {
             if (nome.equals(lampadine[i].getNome().toLowerCase())) {
-                lampadine[i].cambiaColore(colore);
+                lampadine[i].cambiaColore(Color.YELLOW);
+                lampadine[i].accendi();
             }
         }
     }

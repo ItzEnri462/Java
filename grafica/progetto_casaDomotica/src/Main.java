@@ -12,7 +12,7 @@ public class Main {
         p.draw();
         int scelta;
         boolean giaCreato = false;
-        SistemaDomotico sistema;
+        SistemaDomotico sistema = null;
         SistemaDomotico sistemaDefault = new SistemaDomotico(15);
         String nome;
         do {
