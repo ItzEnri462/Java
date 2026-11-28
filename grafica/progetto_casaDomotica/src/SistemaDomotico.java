@@ -71,40 +71,69 @@ public class SistemaDomotico {
     }
 
     public void disegnaLampadina() {
-        int raggio = lampadine[lampadineAttuali].getPotenza() * 2;
-        disegni[lampadineAttuali] = new Ellipse(lampadine[lampadineAttuali].getX(), lampadine[lampadineAttuali].getY(), raggio, raggio);
-        Color colore = new Color(254, 255, 153);
-        disegni[lampadineAttuali].setColor(colore);
-        disegni[lampadineAttuali].fill();
+        disegni[lampadineAttuali] = lampadine[lampadineAttuali].disegna();
     }
 
     public void disegnaLampadina(String nome) {
         nome = nome.toLowerCase();
         for (int i = 0; i < lampadineAttuali; i++) {
             if (lampadine[i].getNome().toLowerCase().equals(nome)) {
-                int raggio = lampadine[i].getPotenza() * 2;
-                disegni[i] = new Ellipse(lampadine[i].getX(), lampadine[i].getY(), raggio, raggio);
-                Color colore = new Color(254, 255, 153);
-                disegni[i].setColor(colore);
-                disegni[i].fill();
+                lampadine[i].disegna();
             }
         }
 
     }
 
-    public void nascondiLampadina(String nome) {
+    private void nascondiLampadina(String nome) {
         nome = nome.toLowerCase();
         for (int i = 0; i < lampadineAttuali; i++) {
             if (lampadine[i].getNome().toLowerCase().equals(nome)) {
-                int raggio = lampadine[i].getPotenza() * 2;
-                disegni[i].grow(-raggio, -raggio);
+                lampadine[i].nascondi(disegni[i]);
             }
         }
     }
 
     public void togliLampadina(String nome) {
-        this.rimuovi(nome);
         this.nascondiLampadina(nome);
+        this.rimuovi(nome);
+    }
+
+    public void aumentaPotLampadina(int valore, String nome) {
+        nome = nome.toLowerCase();
+        for (int i = 0; i < lampadineAttuali; i++) {
+            if (nome.equals(lampadine[i].getNome().toLowerCase())) {
+                lampadine[i].aumentaPotenza(valore);
+            }
+        }
+    }
+
+    public void aumentaLumLampadina(String nome) {
+        nome = nome.toLowerCase();
+        for (int i = 0; i < lampadineAttuali; i++) {
+            if (nome.equals(lampadine[i].getNome().toLowerCase())) {
+                lampadine[i].aumentaLuminosita();
+            }
+        }
+    }
+
+    public void cambiaColoreLampadina(String nome, Color colore) {
+        for (int i = 0; i < lampadineAttuali; i++) {
+            if (nome.equals(lampadine[i].getNome().toLowerCase())) {
+                lampadine[i].cambiaColore(colore);
+            }
+        }
+    }
+
+    public void accendiLampadina(String nome) {
+        for (int i = 0; i < lampadineAttuali; i++) {
+            if (nome.equals(lampadine[i].getNome().toLowerCase())) {
+                lampadine[i].cambiaColore(colore);
+            }
+        }
+    }
+
+    public void spegniLampadina(String nome) {
+        this.cambiaColoreLampadina(nome, Color.DARK_GRAY);
     }
 
     @Override

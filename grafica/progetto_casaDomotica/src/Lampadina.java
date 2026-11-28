@@ -9,6 +9,7 @@ public class Lampadina {
     private String nome;
     private int x;
     private int y;
+    private int raggio;
 
     public Lampadina(int potenza){
         this.potenza = potenza;
@@ -19,6 +20,7 @@ public class Lampadina {
         this.intensita = 100;
         this.accesa = false;
         this.nome = "";
+        this.raggio = this.potenza * 2;
     }
 
     public Lampadina(int potenza, int x, int y){
@@ -32,6 +34,7 @@ public class Lampadina {
         this.nome = "";
         this.x = x;
         this.y = y;
+        this.raggio = this.potenza * 2;
     }
 
     public Lampadina(String nome, int x, int y){
@@ -42,6 +45,7 @@ public class Lampadina {
         this.nome = nome;
         this.x = x;
         this.y = y;
+        this.raggio = this.potenza * 2;
     }
 
     public Lampadina(Lampadina l) {
@@ -50,6 +54,7 @@ public class Lampadina {
         this.intensita = l.intensita;
         this.accesa = l.accesa;
         this.nome = l.nome;
+        this.raggio = l.raggio;
     }
 
     public String getNome() {
@@ -82,6 +87,30 @@ public class Lampadina {
 
     public int getY() {
         return y;
+    }
+
+    public Color getColore() {
+        return colore;
+    }
+
+    public void aumentaPotenza(int valore) {
+        if (valore > 100 )
+            this.potenza = 100;
+        else if (valore < 1)
+            this.potenza = 1;
+    }
+
+    public void cambiaColore(Color c) {
+    this.colore = colore;
+    }
+
+    public Ellipse disegna() {
+        return new Ellipse(x, y, raggio, raggio);
+
+    }
+
+    public void nascondi(Ellipse e) {
+        e.grow(-raggio, -raggio);
     }
 
     @Override
